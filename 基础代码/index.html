@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>工资时钟</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 主界面 -->
+    <div class="container">
+        <!-- 当前时间显示 -->
+        <div class="current-time">
+            <div class="date-selector">
+                <input type="datetime-local" id="compareDateTime" class="date-input">
+                <button id="resetDateTime" class="reset-btn">重置</button>
+            </div>
+            <span id="currentDateTime">2024-01-01 00:00:00</span>
+        </div>
+        <!-- 时间段切换器 -->
+        <div class="period-switcher">
+            <button class="period-btn active" data-period="day">今日已赚</button>
+            <button class="period-btn" data-period="month">本月已赚</button>
+            <button class="period-btn" data-period="year">2025已赚</button>
+            <button class="period-btn" data-period="total">入职至今已赚</button>
+        </div>
+
+        <!-- 工资显示 -->
+        <div class="salary-display">
+            <div class="amount">¥ <span id="salaryAmount">0.00</span></div>
+            <div class="settings-container">
+                <button id="settingsBtn" class="text-btn">设置</button>
+            </div>
+            <div class="countdown">
+                <div class="time-picker">
+                    <div class="time-header">距离下班还有</div>
+                    <div class="time-content">
+                        <div class="time-column">
+                            <div class="time-value">
+                                <span id="timeLeftHours">--</span>
+                                <span class="time-unit">时</span>
+                            </div>
+                        </div>
+                        <div class="time-column">
+                            <div class="time-value">
+                                <span id="timeLeftMinutes">--</span>
+                                <span class="time-unit">分</span>
+                            </div>
+                        </div>
+                        <div class="time-column">
+                            <div class="time-value">
+                                <span id="timeLeftSeconds">--</span>
+                                <span class="time-unit">秒</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 本月工作日显示 -->
+            <div class="work-days-info" style="display: none">
+                <div class="work-days-label">本月工作日</div>
+                <div class="work-days-value">
+                    <span id="monthWorkDays">--</span>
+                    <span class="work-days-unit">天</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 设置模态框 -->
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>设置</h2>
+                <button type="button" class="close-btn" id="closeModalBtn">&times;</button>
+            </div>
+            <form id="settingsForm">
+                <div class="form-group">
+                    <label for="monthlySalary">月薪（元）</label>
+                    <input type="number" id="monthlySalary" required>
+                </div>
+                <div class="form-group">
+                    <label for="workSchedule">休息制度</label>
+                    <select id="workSchedule" required>
+                        <option value="5">双休</option>
+                        <option value="6">单休</option>
+                        <option value="custom">自定义</option>
+                    </select>
+                </div>
+                <div class="form-group" id="customRestDaysGroup" style="display: none;">
+                    <label for="customRestDays">每月休息天数</label>
+                    <input type="number" id="customRestDays" min="0" max="31">
+                </div>
+                <div class="form-group">
+                    <label for="workStartTime">上班时间</label>
+                    <input type="time" id="workStartTime" required>
+                </div>
+                <div class="form-group">
+                    <label for="workEndTime">下班时间</label>
+                    <input type="time" id="workEndTime" required>
+                </div>
+                <div class="form-group">
+                    <label for="hireDate">入职日期</label>
+                    <input type="date" id="hireDate" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/holidays.js" type="text/javascript"></script>
+    <script src="js/utils.js" type="text/javascript"></script>
+    <script src="js/main.js" type="text/javascript"></script>
+</body>
+</html>
