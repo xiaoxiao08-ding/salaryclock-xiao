@@ -1,0 +1,7 @@
+salary-timer/
+  ├── index.html
+  ├── css/
+  │   └── style.css
+  ├── js/
+  │   ├── main.js
+  │   └── utils.js 
